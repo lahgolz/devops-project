@@ -1,5 +1,4 @@
 import eslint from '@eslint/js';
-import importX from 'eslint-plugin-import-x';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 import prettierRecommended from 'eslint-plugin-prettier/recommended';
 import react from 'eslint-plugin-react';
@@ -28,6 +27,8 @@ export default [
 			'**/__snapshots__',
 			'!**/.github',
 			'!**/.vscode',
+			'playwright-report',
+			'test-results',
 		],
 	},
 	eslint.configs.recommended,
@@ -39,7 +40,6 @@ export default [
 	{
 		plugins: {
 			'react-hooks': reactHooks,
-			'import-x': importX,
 		},
 
 		languageOptions: {
@@ -58,7 +58,6 @@ export default [
 
 		rules: {
 			...reactHooks.configs.recommended.rules,
-			...importX.configs.recommended.rules,
 
 			'consistent-return': 'off',
 			'class-methods-use-this': 'off',

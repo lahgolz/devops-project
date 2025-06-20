@@ -1,4 +1,7 @@
 {
 	"testEnvironment": "node",
-	"transform": {}
+	"transform": {},
+  "testMatch": [
+    "<rootDir>/src/**/*.test.js"
+  ]
 }

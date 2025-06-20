@@ -66,7 +66,7 @@ function App() {
 						</button>
 					</div>
 
-					{result !== null && (
+					{result !== undefined && (
 						<div className="mt-8 p-4 bg-gray-50 rounded-lg border-l-4 border-indigo-500">
 							<div className="text-xl font-semibold text-gray-800">Result:</div>
 							<div className="text-3xl font-bold text-indigo-500 mt-2">{result}</div>
