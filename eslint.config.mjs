@@ -1,6 +1,9 @@
 import eslint from '@eslint/js';
 import importX from 'eslint-plugin-import-x';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
 import prettierRecommended from 'eslint-plugin-prettier/recommended';
+import react from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
 import sonarjs from 'eslint-plugin-sonarjs';
 import unicorn from 'eslint-plugin-unicorn';
 import globals from 'globals';
@@ -28,22 +31,33 @@ export default [
 		],
 	},
 	eslint.configs.recommended,
+	react.configs.flat.recommended,
+	jsxA11y.flatConfigs.recommended,
 	sonarjs.configs.recommended,
 	unicorn.configs.recommended,
 	prettierRecommended,
 	{
 		plugins: {
+			'react-hooks': reactHooks,
 			'import-x': importX,
 		},
 
 		languageOptions: {
 			globals: {
+				...globals.browser,
 				...globals.node,
 				...globals.jest,
 			},
 		},
 
+		settings: {
+			react: {
+				version: 'detect',
+			},
+		},
+
 		rules: {
+			...reactHooks.configs.recommended.rules,
 			...importX.configs.recommended.rules,
 
 			'consistent-return': 'off',
@@ -188,6 +202,57 @@ export default [
 			'unicorn/no-anonymous-default-export': 'off',
 			'unicorn/filename-case': 'off',
 			'unicorn/no-null': 'off',
+
+			'react-hooks/exhaustive-deps': 0,
+
+			'react/static-property-placement': 0,
+			'react/prop-types': 'off',
+			'react/jsx-no-duplicate-props': [
+				1,
+				{
+					ignoreCase: false,
+				},
+			],
+			'react/jsx-props-no-spreading': 'off',
+			'react/prefer-stateless-function': 0,
+			'react/jsx-filename-extension': 0,
+			'react/jsx-no-bind': 0,
+			'react/require-default-props': 0,
+			'react/no-did-update-set-state': 0,
+			'react/function-component-definition': [
+				'error',
+				{
+					namedComponents: 'function-declaration',
+					unnamedComponents: 'arrow-function',
+				},
+			],
+			'react/no-unescaped-entities': [
+				'error',
+				{
+					forbid: [
+						{
+							char: '>',
+							alternatives: ['&gt;'],
+						},
+						{
+							char: '}',
+							alternatives: ['&#125;'],
+						},
+					],
+				},
+			],
+
+			'react/display-name': 'off',
+			'react/no-unstable-nested-components': 'off',
+			'react/react-in-jsx-scope': 'off',
+
+			'jsx-a11y/click-events-have-key-events': 'off',
+			'jsx-a11y/no-static-element-interactions': 'off',
+			'jsx-a11y/anchor-is-valid': 'off',
+			'jsx-a11y/no-static-element-interaction': 'off',
+			'jsx-a11y/no-noninteractive-element-interactions': 'off',
+			'jsx-a11y/media-has-caption': 'off',
+			'jsx-a11y/label-has-associated-control': 'off',
 
 			'prettier/prettier': 'error',
 		},

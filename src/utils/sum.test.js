@@ -1,4 +1,4 @@
-import { sum } from '../src/sum.js';
+import { sum } from './sum.js';
 
 describe('sum function', () => {
 	test('adds 1 + 2 to equal 3', () => {
